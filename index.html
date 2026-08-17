@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Елизавета & Никита · 06.08.2027 — приглашение на свадьбу</title>
+<meta name="description" content="Приглашение на свадьбу Елизаветы и Никиты — 6 августа 2027 года.">
+<meta name="theme-color" content="#FCFAF7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤍%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCFAF7; --card:#FFFFFF;
+    --ink:#574A46; --muted:#9A8A82;
+    --rose:#C8909B; --rose-deep:#A96C7A;
+    --rose-pale:#F5E7E6; --rose-line:#EADAD6;
+    --line:#E9DFD8; --sage:#A8B39A;
+    --shadow:0 24px 60px -30px rgba(120,80,80,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:400 1.05rem/1.75 'Cormorant',Georgia,serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{background:var(--rose-pale)}
+  [hidden]{display:none!important}
+  :focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:2px}
+
+  /* плёночное зерно поверх всего */
+  body::after{
+    content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+  #petals{position:fixed;inset:0;z-index:1;pointer-events:none}
+  header,main,footer,#floatCta{position:relative;z-index:2}
+
+  /* ---------- появление ---------- */
+  .fade{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease;transition-delay:var(--d,0s)}
+  body.loaded .fade{opacity:1;transform:none}
+  [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  [data-reveal].in{opacity:1;transform:none}
+
+  /* ---------- веточки (рисуются при появлении) ---------- */
+  .sprig{width:110px;height:auto;display:block}
+  .sprig.flip{transform:scaleX(-1)}
+  .stem{stroke-dasharray:1;stroke-dashoffset:1}
+  .leaf path{fill:currentColor;opacity:0;transform:scale(.4);transform-box:fill-box;transform-origin:20% 85%;
+    transition:opacity .6s ease,transform .6s ease;transition-delay:calc(.35s + var(--i)*.18s)}
+  .in .stem, body.loaded .hero .stem{transition:stroke-dashoffset 1.5s ease .2s;stroke-dashoffset:0}
+  .in .leaf path, body.loaded .hero .leaf path{opacity:.55;transform:none}
+  .orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--sage)}
+  .orn .sep{color:var(--rose);font-size:.72rem;letter-spacing:.2em}
+
+  /* ---------- герой ---------- */
+  .hero{
+    min-height:100svh;display:grid;place-items:center;padding:28px;
+    background:
+      radial-gradient(55% 42% at 12% -4%, #F6E6E3 0%, rgba(246,230,227,0) 62%),
+      radial-gradient(48% 40% at 94% 104%, #F3EAE1 0%, rgba(243,234,225,0) 60%),
+      var(--bg);
+  }
+  .frame{
+    position:relative;text-align:center;max-width:780px;width:100%;
+    padding:clamp(2.6rem,7vw,4.6rem) clamp(1.4rem,6vw,4.2rem);
+    background:rgba(255,255,255,.66);border:1px solid var(--line);box-shadow:var(--shadow);
+  }
+  .frame::before{content:"";position:absolute;inset:11px;border:1px solid var(--rose-line);pointer-events:none}
+  .corner{position:absolute;transform:translate(-50%,-50%);color:var(--rose);font-size:.62rem;line-height:1;font-style:normal}
+  .eyebrow{font:400 1.5rem 'Marck Script',cursive;color:var(--rose-deep);transform:rotate(-2deg)}
+  .names{font:400 clamp(2.9rem,9.5vw,5.6rem)/1.08 'Marck Script',cursive;margin:.5rem 0 .4rem;color:var(--ink)}
+  .names .n{white-space:nowrap}
+  .names .amp{color:var(--rose-deep);font-size:.8em;padding:0 .08em}
+  .names .ch{display:inline-block;opacity:0;transform:translateY(.6em) rotate(6deg);
+    transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  body.loaded .names .ch{opacity:1;transform:none}
+  .hero .orn{margin:1.1rem 0 .2rem}
+  .hero-date{font:500 .95rem 'Jost',sans-serif;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-top:1.2rem}
+  .hero-sub{font:italic 400 1.12rem 'Cormorant',serif;color:var(--muted);margin-top:.5rem}
+  .hint{margin:2.2rem auto 0;width:1px;height:46px;background:var(--rose-line);position:relative;overflow:hidden}
+  .hint::after{content:"";position:absolute;left:0;top:-12px;width:1px;height:12px;background:var(--rose-deep);animation:drop 2.2s ease-in-out infinite}
+  @keyframes drop{0%{transform:translateY(0);opacity:0}25%{opacity:1}100%{transform:translateY(60px);opacity:0}}
+
+  /* ---------- секции ---------- */
+  section{padding:clamp(4rem,9vh,6.5rem) 20px}
+  .wrap{max-width:680px;margin:0 auto;text-align:center}
+  .s-script{font:400 1.6rem 'Marck Script',cursive;color:var(--rose-deep);display:inline-block;transform:rotate(-1.5deg)}
+  .s-title{font:500 clamp(1.75rem,4.4vw,2.35rem)/1.2 'Cormorant',serif;letter-spacing:.05em;margin:.35rem 0 .8rem}
+  .lead{font-size:1.14rem;max-width:56ch;margin:0 auto}
+  .lead + .lead{margin-top:.9rem}
+  .muted{color:var(--muted)}
+
+  /* арка с фото / монограммой */
+  .arch{width:min(250px,64vw);margin:0 auto 2.2rem;position:relative;padding:10px;
+    border:1px solid var(--rose-line);border-radius:999px 999px 8px 8px;background:#fff}
+  .arch::after{content:"";position:absolute;inset:5px;border:1px solid var(--line);border-radius:inherit;pointer-events:none}
+  .arch-inner{border-radius:999px 999px 5px 5px;overflow:hidden;aspect-ratio:3/4;display:grid;place-items:center;
+    background:linear-gradient(160deg,#FBF3F1,#F4ECE4)}
+  .arch-inner img{width:100%;height:100%;object-fit:cover;display:block}
+  .arch-mono{font:400 3rem 'Marck Script',cursive;color:var(--rose-deep)}
+
+  /* таймлайн */
+  .timeline{text-align:left;max-width:460px;margin:1.8rem auto 0;position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;
+    background:linear-gradient(180deg,var(--rose-line),rgba(234,218,214,.15))}
+  .tl-item{position:relative;padding:.9rem 0 1.1rem}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:1.6rem;width:9px;height:9px;border-radius:50%;
+    background:var(--rose);box-shadow:0 0 0 5px var(--rose-pale)}
+  .tl-time{font:600 1.3rem 'Cormorant',serif;color:var(--rose-deep);letter-spacing:.06em}
+  .tl-title{font:500 1.25rem 'Cormorant',serif;margin:.1rem 0}
+  .tl-text{color:var(--muted);font:300 .95rem 'Jost',sans-serif;letter-spacing:.03em}
+
+  /* карточка места */
+  .place-card{margin:2.4rem auto 0;max-width:520px;background:var(--card);border:1px solid var(--rose-line);
+    box-shadow:var(--shadow);padding:2.2rem 1.6rem 2rem;position:relative}
+  .place-card::before{content:"";position:absolute;inset:8px;border:1px solid var(--line);pointer-events:none}
+  .place-time{font:600 2.1rem 'Cormorant',serif;margin:.2rem 0}
+  .place-addr{font:300 .95rem 'Jost',sans-serif;letter-spacing:.08em;color:var(--muted)}
+  .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--rose-deep);color:#fff;border:1px solid var(--rose-deep);
+    padding:.95rem 1.8rem;font:500 .78rem/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;
+    border-radius:3px;cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s}
+  .btn:hover{background:#96596A;border-color:#96596A;transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(169,108,122,.6)}
+  .btn.ghost{background:transparent;color:var(--rose-deep);border:1px solid var(--rose)}
+  .btn.ghost:hover{background:var(--rose-pale);border-color:var(--rose)}
+
+  /* таймер */
+  .timer-wrap{background:rgba(255,255,255,.72);border:1px solid var(--rose-line);box-shadow:var(--shadow);
+    padding:2.1rem 1rem;max-width:640px;margin:2rem auto 0}
+  .timer{display:flex;justify-content:center;align-items:flex-start;gap:clamp(.4rem,2.4vw,1.1rem);flex-wrap:wrap}
+  .cd{min-width:72px;text-align:center}
+  .cd b{display:block;font:600 clamp(2.3rem,7.4vw,3.4rem)/1 'Cormorant',serif;font-variant-numeric:tabular-nums}
+  .cd span{display:block;margin-top:.5rem;font:300 .68rem 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .cd-sep{font:400 2rem/1 'Marck Script',cursive;color:var(--rose);padding-top:.4rem}
+  .tick{animation:pop .45s ease}
+  @keyframes pop{0%{opacity:.15;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+  /* ---------- анкета ---------- */
+  .rsvp-card{max-width:560px;margin:2rem auto 0;background:#fff;border:1px solid var(--rose-line);
+    box-shadow:var(--shadow);padding:clamp(1.6rem,4vw,2.6rem);text-align:left;position:relative}
+  .field{margin-bottom:1.5rem}
+  .fl{display:block;font:400 .72rem 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+  .fl b{color:var(--rose-deep);font-weight:500}
+  input.txt,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);
+    padding:.55rem 2px;font:500 1.15rem 'Cormorant',serif;color:var(--ink);transition:border-color .3s,box-shadow .3s}
+  input.txt:focus,textarea:focus{outline:none;border-color:var(--rose);box-shadow:0 1px 0 var(--rose)}
+  textarea{resize:vertical;min-height:60px}
+  ::placeholder{color:#C7B9B1;font-style:italic}
+
+  .att{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:480px){.att{grid-template-columns:1fr}}
+  .opt{display:block;border:1px solid var(--line);border-radius:3px;padding:.95rem .8rem;text-align:center;
+    cursor:pointer;background:#fff;transition:border-color .3s,background .3s,transform .2s;position:relative}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .opt .big{display:block;font:500 1.12rem 'Cormorant',serif}
+  .opt .small{display:block;margin-top:.2rem;font:300 .78rem 'Jost',sans-serif;letter-spacing:.06em;color:var(--muted)}
+  .opt:hover{border-color:var(--rose);transform:translateY(-1px)}
+  .opt:has(input:checked){border-color:var(--rose);background:var(--rose-pale)}
+  .opt:has(input:checked) .big{color:var(--rose-deep)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{display:inline-flex;align-items:center;gap:.55rem;border:1px solid var(--line);border-radius:999px;
+    padding:.5rem 1.1rem;cursor:pointer;font:400 .95rem 'Jost',sans-serif;background:#fff;user-select:none;
+    transition:border-color .28s,background .28s,color .28s;position:relative}
+  .chip input{position:absolute;opacity:0}
+  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .28s}
+  .chip:hover{border-color:var(--rose)}
+  .chip:has(input:checked){border-color:var(--rose);background:var(--rose-pale);color:var(--rose-deep)}
+  .chip:has(input:checked) .dot{background:var(--rose-deep)}
+  .chip-note{font:300 .8rem 'Jost',sans-serif;color:var(--muted);margin-top:.5rem}
+
+  #optionalGroups{max-height:700px;overflow:hidden;transition:max-height .5s ease,opacity .4s ease,transform .4s ease}
+  #optionalGroups.off{max-height:0;opacity:0;transform:translateY(-8px)}
+
+  .err{color:#B26A6A;font:400 .92rem 'Jost',sans-serif;margin:.2rem 0 1rem}
+  .btn-send{display:block;margin:1.8rem auto 0;padding:1rem 3rem}
+  .btn-send.busy{opacity:.7;pointer-events:none}
+  .fineprint{text-align:center;color:var(--muted);font:300 .85rem 'Jost',sans-serif;margin-top:1.1rem}
+
+  .done{display:none;text-align:center;padding:1.5rem 0}
+  .done.show{display:block;animation:rise .7s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}}
+  .done .big-script{font:400 2.7rem 'Marck Script',cursive;color:var(--rose-deep)}
+  .linklike{background:none;border:0;color:var(--rose-deep);text-decoration:underline dotted;cursor:pointer;
+    font:400 .9rem 'Jost',sans-serif;margin-top:1.4rem}
+
+  /* футер и плавающая кнопка */
+  footer{padding:4rem 20px 5rem;text-align:center;background:linear-gradient(180deg,transparent,#F6EDE8)}
+  .foot-names{font:400 2.3rem 'Marck Script',cursive;margin-top:1.6rem}
+  .foot-date{font:400 .78rem 'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:.6rem}
+  #floatCta{position:fixed;left:50%;bottom:18px;z-index:70;transform:translate(-50%,90px);opacity:0;
+    background:var(--rose-deep);color:#fff;border:0;border-radius:999px;padding:.85rem 1.7rem;
+    font:500 .76rem 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+    box-shadow:0 14px 30px -12px rgba(169,108,122,.65);
+    transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .45s}
+  #floatCta.show{transform:translate(-50%,0);opacity:1}
+
+  .hp-wrap{position:absolute;left:-9999px}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    [data-reveal],.fade,.names .ch{opacity:1!important;transform:none!important}
+    .stem{stroke-dashoffset:0!important}
+    .leaf path{opacity:.55!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<!-- ======== ПРИГЛАШЕНИЕ ======== -->
+<header class="hero" id="hero">
+  <div class="frame">
+    <i class="corner" style="top:11px;left:11px">✦</i>
+    <i class="corner" style="top:11px;right:11px;transform:translate(50%,-50%)">✦</i>
+    <i class="corner" style="bottom:11px;left:11px;transform:translate(-50%,50%)">✦</i>
+    <i class="corner" style="bottom:11px;right:11px;transform:translate(50%,50%)">✦</i>
+
+    <p class="eyebrow fade" style="--d:.15s">приглашение на свадьбу</p>
+    <h1 class="names" id="names"><span class="n">Елизавета</span><span class="amp">&</span><span class="n">Никита</span></h1>
+
+    <div class="orn fade" style="--d:.95s;color:var(--sage)">
+      <svg class="sprig" viewBox="0 0 130 40" aria-hidden="true">
+        <path class="stem" pathLength="1" d="M4 34 C 36 30, 74 22, 126 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        <g class="leaf" style="--i:0" transform="translate(30 30) rotate(-35)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+        <g class="leaf" style="--i:1" transform="translate(56 25) rotate(145) scale(.9)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+        <g class="leaf" style="--i:2" transform="translate(82 19) rotate(-30)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+        <g class="leaf" style="--i:3" transform="translate(106 13) rotate(150) scale(.85)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+      </svg>
+      <span class="sep">✦</span>
+      <svg class="sprig flip" viewBox="0 0 130 40" aria-hidden="true">
+        <path class="stem" pathLength="1" d="M4 34 C 36 30, 74 22, 126 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        <g class="leaf" style="--i:0" transform="translate(30 30) rotate(-35)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+        <g class="leaf" style="--i:1" transform="translate(56 25) rotate(145) scale(.9)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+        <g class="leaf" style="--i:2" transform="translate(82 19) rotate(-30)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+        <g class="leaf" style="--i:3" transform="translate(106 13) rotate(150) scale(.85)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+      </svg>
+    </div>
+
+    <p class="hero-date fade" style="--d:.7s" id="heroDate">6 августа 2027</p>
+    <p class="hero-sub fade" style="--d:.85s" id="heroSub">церемония росписи в 14:40 · ул. Еремеева, 1</p>
+    <div class="hint fade" style="--d:1.3s" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ======== ОБРАЩЕНИЕ ======== -->
+<section id="story">
+  <div class="wrap">
+    <figure class="arch" data-reveal>
+      <div class="arch-inner">
+        <img id="archImg" alt="Наше фото" hidden>
+        <span class="arch-mono" id="archMono">Е&Н</span>
+      </div>
+    </figure>
+    <p class="s-script" data-reveal>дорогие наши!</p>
+    <h2 class="s-title" data-reveal>Мы женимся</h2>
+    <p class="lead" data-reveal>Совсем скоро, <b>6 августа 2027 года</b>, мы станем семьёй. Этот день будет по-настоящему счастливым, если рядом будут самые близкие и любимые люди.</p>
+    <p class="lead" data-reveal>Мы будем рады видеть вас на церемонии росписи и разделить с вами нашу радость.</p>
+  </div>
+</section>
+
+<!-- ======== МЕСТО И ВРЕМЯ ======== -->
+<section id="event">
+  <div class="wrap">
+    <p class="s-script" data-reveal>место и время</p>
+    <h2 class="s-title" data-reveal>Как пройдёт день</h2>
+    <div class="timeline" id="timeline"></div>
+    <div class="place-card" data-reveal>
+      <p class="s-script">ждём вас</p>
+      <p class="place-time" id="placeTime">14:40</p>
+      <p class="place-addr" id="placeAddr">ЗАГС · ул. Еремеева, 1</p>
+      <div class="btns">
+        <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">Открыть на карте</a>
+        <button class="btn ghost" id="icsBtn" type="button">В календарь</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== ТАЙМЕР ======== -->
+<section>
+  <div class="wrap">
+    <p class="s-script" data-reveal>считаем дни</p>
+    <h2 class="s-title" data-reveal>До нашего праздника осталось</h2>
+    <div class="timer-wrap" data-reveal>
+      <div class="timer" id="timer">
+        <div class="cd"><b id="cd-d">00</b><span id="cd-dl">дней</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd"><b id="cd-h">00</b><span id="cd-hl">часов</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd"><b id="cd-m">00</b><span id="cd-ml">минут</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd"><b id="cd-s">00</b><span id="cd-sl">секунд</span></div>
+      </div>
+      <p id="timerNote" class="fineprint" hidden>…этот день настал! 🤍</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== АНКЕТА ======== -->
+<section id="rsvp">
+  <div class="wrap">
+    <p class="s-script" data-reveal>анкета гостя</p>
+    <h2 class="s-title" data-reveal>Пожалуйста, ответьте на несколько вопросов</h2>
+    <p class="muted" data-reveal style="font:300 .95rem 'Jost',sans-serif">это поможет нам всё подготовить и никого не забыть</p>
+
+    <form class="rsvp-card" id="rsvpForm" data-reveal novalidate>
+      <div id="formBody">
+        <div class="field">
+          <label class="fl" for="name">Ваше имя <b>*</b></label>
+          <input class="txt" type="text" id="name" name="name" placeholder="например, Анна" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <span class="fl">Сможете прийти? <b>*</b></span>
+          <div class="att">
+            <label class="opt"><input type="radio" name="attend" value="yes">
+              <span class="big">С радостью приду</span><span class="small">буду обязательно 🤍</span></label>
+            <label class="opt"><input type="radio" name="attend" value="no">
+              <span class="big">К сожалению, не смогу</span><span class="small">буду с вами мысленно</span></label>
+          </div>
+        </div>
+
+        <div id="optionalGroups">
+          <div class="field">
+            <span class="fl">Что будете пить?</span>
+            <div class="chips" id="drinks"></div>
+            <p class="chip-note">можно выбрать несколько вариантов</p>
+          </div>
+          <div class="field">
+            <span class="fl">Что будете есть?</span>
+            <div class="chips" id="foods"></div>
+            <p class="chip-note">можно выбрать несколько вариантов</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="fl" for="comment">Комментарий (необязательно)</label>
+          <textarea id="comment" rows="2" placeholder="аллергии, пожелания, будете ли с парой…"></textarea>
+        </div>
+
+        <div class="hp-wrap" aria-hidden="true">
+          <label>Не заполняйте это поле<input class="hp" id="hp" type="text" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <p class="err" id="formError" hidden></p>
+        <button class="btn btn-send" id="submitBtn" type="submit">Отправить ответ</button>
+        <p class="fineprint">одна анкета — один гость: если вас двое, заполните, пожалуйста, дважды</p>
+      </div>
+
+      <div class="done" id="doneView">
+        <p class="big-script">спасибо!</p>
+        <p class="lead" id="doneText" style="margin:.6rem auto 0"></p>
+        <p class="fineprint" id="demoNote" hidden>демо-режим: подключение к Google Таблице ещё не настроено</p>
+        <button class="linklike" id="againBtn" type="button">заполнить анкету за другого гостя</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="orn" data-reveal style="color:var(--sage)">
+    <svg class="sprig" viewBox="0 0 130 40" aria-hidden="true">
+      <path class="stem" pathLength="1" d="M4 34 C 36 30, 74 22, 126 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      <g class="leaf" style="--i:0" transform="translate(30 30) rotate(-35)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+      <g class="leaf" style="--i:1" transform="translate(56 25) rotate(145) scale(.9)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+      <g class="leaf" style="--i:2" transform="translate(82 19) rotate(-30)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+    </svg>
+    <span class="sep">✦</span>
+    <svg class="sprig flip" viewBox="0 0 130 40" aria-hidden="true">
+      <path class="stem" pathLength="1" d="M4 34 C 36 30, 74 22, 126 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      <g class="leaf" style="--i:0" transform="translate(30 30) rotate(-35)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+      <g class="leaf" style="--i:1" transform="translate(56 25) rotate(145) scale(.9)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+      <g class="leaf" style="--i:2" transform="translate(82 19) rotate(-30)"><path d="M0 0 Q -3 -10 5 -14 Q 10 -5 0 0 Z"/></g>
+    </svg>
+  </div>
+  <p class="foot-names" data-reveal>ждём вас!</p>
+  <p class="foot-date" data-reveal>Елизавета & Никита · 06.08.2027</p>
+  <p class="fineprint" data-reveal>сделано с любовью</p>
+</footer>
+
+<button id="floatCta" type="button">✦ заполнить анкету</button>
+
+<script>
+/* =====================================================================
+   НАСТРОЙКИ — МЕНЯТЬ ЗДЕСЬ
+   Всё, что может поменяться, собрано в этом блоке.
+===================================================================== */
+const CONFIG = {
+  dateISO:   '2027-08-06T14:40:00', // дата и время церемонии (локальные)
+  dateHuman: '6 августа 2027',
+
+  venue: {
+    time:    '14:40',
+    title:   'Церемония росписи',
+    name:    'ЗАГС',
+    address: 'ул. Еремеева, 1'   // если уточните город — впишите сюда
+  },
+
+  // Программа дня. Когда определитесь с банкетом — просто добавьте
+  // новые строки по образцу, и они сами появятся на странице.
+  program: [
+    { time: '14:40', title: 'Церемония росписи', text: 'ЗАГС · ул. Еремеева, 1' }
+    // { time: '17:00', title: 'Банкет', text: 'Ресторан «…», адрес' }
+  ],
+
+  // Напитки и еда для опроса — замените списки, когда определитесь.
+  drinks: ['Чай', 'Сок'],
+  foods:  ['Пицца', 'Картошка фри'],
+
+  // Сюда вставьте URL из Google Apps Script (см. инструкцию).
+  // Пока пусто — сайт работает в демо-режиме.
+  formUrl: '',
+
+  // Необязательно: ссылка на вашу совместную фотографию —
+  // она появится в арке наверху страницы.
+  photoUrl: ''
+};
+/* ========================== конец настроек ========================== */
+
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- дата, программа, адрес ---------- */
+const eventDate = new Date(CONFIG.dateISO);
+const weekdays = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+$('#heroDate').textContent = CONFIG.dateHuman + ' · ' + weekdays[eventDate.getDay()];
+$('#heroSub').textContent  = CONFIG.venue.title.toLowerCase() + ' в ' + CONFIG.venue.time + ' · ' + CONFIG.venue.address;
+$('#placeTime').textContent = CONFIG.venue.time;
+$('#placeAddr').textContent = CONFIG.venue.name + ' · ' + CONFIG.venue.address;
+$('#mapLink').href = 'https://yandex.ru/maps/?text=' + encodeURIComponent(CONFIG.venue.address);
+
+const timeline = $('#timeline');
+CONFIG.program.forEach(it => {
+  timeline.insertAdjacentHTML('beforeend',
+    `<div class="tl-item" data-reveal>
+       <span class="tl-time">${esc(it.time)}</span>
+       <h3 class="tl-title">${esc(it.title)}</h3>
+       <p class="tl-text">${esc(it.text)}</p>
+     </div>`);
+});
+
+if (CONFIG.photoUrl) {
+  const img = $('#archImg');
+  img.src = CONFIG.photoUrl; img.hidden = false;
+  $('#archMono').hidden = true;
+}
+
+/* ---------- вариант напитка/еды = одна строка в CONFIG ---------- */
+function buildChips(list, container) {
+  list.forEach((v, i) => {
+    const id = container.id + '-' + i;
+    container.insertAdjacentHTML('beforeend',
+      `<label class="chip" for="${id}">
+         <input type="checkbox" id="${id}" value="${esc(v)}">
+         <span class="dot"></span><span>${esc(v)}</span>
+       </label>`);
+  });
+}
+buildChips(CONFIG.drinks, $('#drinks'));
+buildChips(CONFIG.foods,  $('#foods'));
+
+/* ---------- появление при прокрутке ---------- */
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+/* ---------- буквы имени по одной ---------- */
+if (!prefersReduced) {
+  document.querySelectorAll('#names .n').forEach(el => {
+    const text = el.textContent; el.textContent = '';
+    [...text].forEach((ch, i) => {
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.style.transitionDelay = (150 + i * 45) + 'ms';
+      s.textContent = ch;
+      el.appendChild(s);
+    });
+  });
+}
+
+/* ---------- лепестки ---------- */
+const canvas = $('#petals'), ctx = canvas.getContext('2d');
+let W, H;
+function resize() {
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+addEventListener('resize', resize); resize();
+
+const ROSE = ['rgba(206,150,158,', 'rgba(216,170,175,', 'rgba(191,132,140,', 'rgba(228,196,193,'];
+const petals = [], bursts = [];
+function makePetal() {
+  return {
+    x: Math.random() * W, y: Math.random() * H,
+    s: 4 + Math.random() * 6,
+    vy: .25 + Math.random() * .55,
+    sway: .6 + Math.random() * 1.2,
+    ph: Math.random() * Math.PI * 2,
+    rot: Math.random() * Math.PI * 2,
+    vr: (Math.random() - .5) * .02,
+    a: .3 + Math.random() * .4,
+    c: ROSE[Math.floor(Math.random() * ROSE.length)]
+  };
+}
+if (!prefersReduced) {
+  const n = Math.min(26, Math.round(W / 55));
+  for (let i = 0; i < n; i++) petals.push(makePetal());
+}
+function drawPetal(p, alpha) {
+  ctx.save();
+  ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+  ctx.scale(1, .72 + .28 * Math.sin(p.ph));
+  ctx.beginPath();
+  const s = p.s;
+  ctx.moveTo(0, -s);
+  ctx.bezierCurveTo(s * 1.1, -s * .5, s * .9, s * .6, 0, s);
+  ctx.bezierCurveTo(-s * .9, s * .6, -s * 1.1, -s * .5, 0, -s);
+  ctx.fillStyle = p.c + (alpha * p.a) + ')';
+  ctx.fill();
+  ctx.restore();
+}
+function burst(x, y) {
+  if (prefersReduced) return;
+  for (let i = 0; i < 42; i++) {
+    const ang = Math.random() * Math.PI * 2, sp = 1 + Math.random() * 3.4;
+    bursts.push({
+      x, y, s: 3 + Math.random() * 5,
+      vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 1.6,
+      rot: Math.random() * 6, vr: (Math.random() - .5) * .15,
+      ph: Math.random() * 6, a: .5 + Math.random() * .35, life: 1,
+      c: ROSE[i % ROSE.length]
+    });
+  }
+}
+let running = true, last = 0;
+document.addEventListener('visibilitychange', () => {
+  running = !document.hidden;
+  if (running) requestAnimationFrame(loop);
+});
+function loop(t) {
+  if (!running || prefersReduced) return;
+  requestAnimationFrame(loop);
+  const dt = Math.min(32, t - last) / 16.7; last = t;
+  ctx.clearRect(0, 0, W, H);
+  for (const p of petals) {
+    p.ph += .02 * dt; p.y += p.vy * dt;
+    p.x += Math.sin(p.ph) * p.sway * .4 * dt;
+    p.rot += p.vr * dt;
+    if (p.y > H + 30) { p.y = -20; p.x = Math.random() * W; }
+    if (p.x > W + 30) p.x = -10;
+    drawPetal(p, 1);
+  }
+  for (let i = bursts.length - 1; i >= 0; i--) {
+    const b = bursts[i];
+    b.vy += .05 * dt; b.x += b.vx * dt; b.y += b.vy * dt;
+    b.rot += b.vr * dt; b.ph += .05 * dt; b.life -= .012 * dt;
+    if (b.life <= 0) { bursts.splice(i, 1); continue; }
+    drawPetal(b, Math.max(0, b.life));
+  }
+}
+if (!prefersReduced) requestAnimationFrame(loop);
+
+/* ---------- таймер обратного отсчёта ---------- */
+const target = eventDate.getTime();
+const cells  = { d: $('#cd-d'), h: $('#cd-h'), m: $('#cd-m'), s: $('#cd-s') };
+const labels = { d: $('#cd-dl'), h: $('#cd-hl'), m: $('#cd-ml'), s: $('#cd-sl') };
+function plural(n, one, few, many) {
+  n %= 100;
+  if (n >= 11 && n <= 14) return many;
+  switch (n % 10) { case 1: return one; case 2: case 3: case 4: return few; default: return many; }
+}
+function setCell(el, v) {
+  const t = String(v).padStart(2, '0');
+  if (el.textContent !== t) {
+    el.textContent = t;
+    if (!prefersReduced) { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); }
+  }
+}
+let passed = false;
+function tick() {
+  const diff = Math.max(0, target - Date.now());
+  if (diff <= 0 && !passed) { passed = true; $('#timer').hidden = true; $('#timerNote').hidden = false; return; }
+  const d = Math.floor(diff / 864e5),
+        h = Math.floor(diff / 36e5) % 24,
+        m = Math.floor(diff / 6e4) % 60,
+        s = Math.floor(diff / 1e3) % 60;
+  setCell(cells.d, d); setCell(cells.h, h); setCell(cells.m, m); setCell(cells.s, s);
+  labels.d.textContent = plural(d, 'день', 'дня', 'дней');
+  labels.h.textContent = plural(h, 'час', 'часа', 'часов');
+  labels.m.textContent = plural(m, 'минута', 'минуты', 'минут');
+  labels.s.textContent = plural(s, 'секунда', 'секунды', 'секунд');
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- анкета ---------- */
+document.querySelectorAll('input[name=attend]').forEach(r =>
+  r.addEventListener('change', () => {
+    const v = document.querySelector('input[name=attend]:checked');
+    $('#optionalGroups').classList.toggle('off', v && v.value === 'no');
+  })
+);
+
+function showErr(msg) { const e = $('#formError'); e.textContent = msg; e.hidden = false; }
+
+function done(real, val) {
+  $('#formBody').hidden = true;
+  $('#doneView').classList.add('show');
+  $('#doneText').textContent = val === 'yes'
+    ? 'Ваш ответ сохранён. Мы очень ждём встречи с вами!'
+    : 'Ваш ответ сохранён. Нам будет вас не хватать — спасибо, что предупредили!';
+  $('#demoNote').hidden = real;
+  const r = $('#rsvpForm').getBoundingClientRect();
+  burst(r.left + r.width / 2, Math.min(r.top + 180, innerHeight - 120));
+}
+
+$('#rsvpForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const errEl = $('#formError'); errEl.hidden = true;
+  const name = $('#name').value.trim();
+  const attendEl = document.querySelector('input[name=attend]:checked');
+  if (name.length < 2) { showErr('Пожалуйста, напишите ваше имя'); $('#name').focus(); return; }
+  if (!attendEl)       { showErr('Отметьте, пожалуйста, сможете ли вы прийти'); return; }
+
+  let drinks = [], foods = [];
+  if (attendEl.value === 'yes') {
+    drinks = [...document.querySelectorAll('#drinks input:checked')].map(i => i.value);
+    foods  = [...document.querySelectorAll('#foods input:checked')].map(i => i.value);
+  }
+  const data = {
+    name, attend: attendEl.value === 'yes' ? 'Придёт' : 'Не придёт',
+    drinks, foods,
+    comment: $('#comment').value.trim(),
+    date: new Date().toLocaleString('ru-RU')
+  };
+
+  if ($('#hp').value) { done(true, attendEl.value); return; } // спам-бот
+
+  const btn = $('#submitBtn');
+  btn.disabled = true; btn.classList.add('busy'); btn.textContent = 'Отправляем…';
+
+  if (CONFIG.formUrl) {
+    try {
+      await fetch(CONFIG.formUrl, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      });
+      done(true, attendEl.value);
+    } catch (err) {
+      showErr('Не получилось отправить. Проверьте интернет и попробуйте ещё раз.');
+      btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Отправить ответ';
+    }
+  } else {
+    // демо-режим, пока не подключена Google Таблица
+    const arr = JSON.parse(localStorage.getItem('rsvp-demo') || '[]');
+    arr.push(data); localStorage.setItem('rsvp-demo', JSON.stringify(arr));
+    console.info('Демо-режим: ответ сохранён локально. Вставьте formUrl в CONFIG.', data);
+    done(false, attendEl.value);
+  }
+});
+
+$('#againBtn').addEventListener('click', () => {
+  const form = $('#rsvpForm');
+  form.reset();
+  $('#optionalGroups').classList.remove('off');
+  $('#doneView').classList.remove('show');
+  $('#formBody').hidden = false;
+  const btn = $('#submitBtn');
+  btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Отправить ответ';
+});
+
+/* ---------- кнопка «в календарь» (.ics) ---------- */
+$('#icsBtn').addEventListener('click', () => {
+  const ics = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//wedding//RU',
+    'BEGIN:VEVENT',
+    'UID:elizaveta-nikita-20270806@wedding',
+    'DTSTAMP:20260817T000000Z',
+    'DTSTART:20270806T144000',
+    'SUMMARY:Свадьба Елизаветы и Никиты',
+    'LOCATION:' + CONFIG.venue.name + ', ' + CONFIG.venue.address,
+    'DESCRIPTION:Церемония росписи. Ждём вас!',
+    'END:VEVENT', 'END:VCALENDAR'
+  ].join('\r\n');
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'svadba-06-08-2027.ics';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+/* ---------- плавающая кнопка ---------- */
+const cta = $('#floatCta');
+let heroIn = true, rsvpIn = false;
+const updCta = () => cta.classList.toggle('show', !heroIn && !rsvpIn);
+new IntersectionObserver(([e]) => { heroIn = e.isIntersecting; updCta(); }).observe($('#hero'));
+new IntersectionObserver(([e]) => { rsvpIn = e.isIntersecting; updCta(); }).observe($('#rsvp'));
+cta.addEventListener('click', () =>
+  $('#rsvp').scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' }));
+
+/* ---------- запуск ---------- */
+document.addEventListener('DOMContentLoaded', () =>
+  requestAnimationFrame(() => document.body.classList.add('loaded')));
+</script>
+</body>
+</html>
