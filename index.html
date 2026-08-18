@@ -10,7 +10,7 @@
   @font-face{font-family:'Caravan';src:url('Caravan.otf') format('opentype'),url('caravan.ttf') format('truetype');font-display:swap}
   @font-face{font-family:'Departura';src:url('DeparturaExtraLight.otf') format('opentype');font-display:swap}
   :root{
-    --bg:#EFD3CE;          /* пыльная роза вместо зелёного */
+    --bg:#EFD3CE;
     --card:#FFF9F6;
     --ink:#5C4348;
     --muted:#8A6E73;
@@ -24,7 +24,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
-  body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.7 var(--body);
+  body{background:var(--bg);color:var(--ink);font:400 16px/1.7 var(--body);
     -webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
   [hidden]{display:none!important}
   :focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:2px}
@@ -38,147 +38,178 @@
   .deco{position:relative}
   .deco > .wrap{position:relative;z-index:1}
 
-  /* заголовки с сердечками по бокам, как в референсе */
-  .h-heart{font:700 clamp(1.9rem,6.5vw,2.6rem)/1.2 var(--script);color:var(--ink);
-    display:flex;align-items:center;justify-content:center;gap:.6em;text-align:center}
+  /* Caravan только для заголовков-сердечек и имён */
+  .h-heart{font:700 clamp(1.8rem,6.5vw,2.6rem)/1.2 var(--script);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;gap:.5em;text-align:center}
   .h-heart .hh{width:.62em;height:.56em;flex:none;color:var(--red);transform:rotate(-10deg)}
   .h-heart .hh:last-child{transform:rotate(12deg)}
   .h-heart .hh svg{width:100%;height:100%;fill:currentColor}
-
-  /* ================= ОБЛОЖКА ================= */
-  .cover{padding:clamp(2.5rem,7vh,4.5rem) 18px 0;text-align:center}
-  .names{font:700 clamp(2.2rem,9vw,3.8rem)/1.15 var(--script);color:var(--ink)}
+  .names{font:700 clamp(2rem,9vw,3.6rem)/1.15 var(--script);color:var(--ink);text-align:center}
   .names .amp{color:var(--red);font-size:.8em;padding:0 .06em}
-  .cover-card{position:relative;max-width:540px;margin:1.8rem auto 0;background:var(--card);
-    padding:2.4rem 1.6rem;box-shadow:0 18px 44px -22px rgba(120,60,70,.35)}
-  .cover-frame{position:absolute;inset:9px;width:calc(100% - 18px);height:calc(100% - 18px);pointer-events:none}
+  .cover-sign{font:700 1.1rem var(--script);color:var(--red-deep)}
+  .done .big-script{font:700 1.8rem var(--script);color:var(--red)}
+
+  /* Departura для всего остального */
+  .cover-text, .cover-text p{font:400 clamp(1rem,4.2vw,1.2rem)/1.65 var(--body);color:var(--ink)}
+  .date-month{font:400 clamp(1.15rem,4.8vw,1.5rem) var(--body);color:var(--ink);letter-spacing:.02em}
+  .dheart i{font:400 var(--body)}
+  .tl-time, .tl-title, .tl-note{font:400 var(--body);color:var(--ink)}
+  .venue-time, .venue-name, .venue-addr{font:400 var(--body)}
+  .fl, .fl-note{font:400 var(--body)}
+  .big{font:400 var(--body)}
+  .sw-note{font:400 var(--body)}
+  .dress-text, .gifts-text{font:400 var(--body)}
+  .cd b, .cd span{font:400 var(--body)}
+  .foot-names{font:400 var(--body)}
+  .foot-date{font:400 var(--body)}
+
+  /* ================= БАЗА (ТЕЛЕФОН) ================= */
+  .cover{padding:2rem 16px 0;text-align:center}
+  .cover-card{position:relative;max-width:540px;margin:1.6rem auto 0;background:var(--card);
+    padding:1.8rem 1.2rem;box-shadow:0 18px 44px -22px rgba(120,60,70,.35)}
+  .cover-frame{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);pointer-events:none}
   #coverFrame{fill:none;stroke:var(--red);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
   .cover-card.in #coverFrame{transition:stroke-dashoffset 2.4s ease .2s;stroke-dashoffset:0}
-  .cover-text{font:700 clamp(1.25rem,4.6vw,1.6rem)/1.55 var(--script);color:var(--ink)}
-  .cover-text p + p{margin-top:.7em}
-  .cover-sign{margin-top:1.1em;color:var(--red-deep)}
+  .cover-text p + p{margin-top:.6em}
+  .cover-sign{margin-top:1em}
 
-  /* ================= ВАЖНАЯ ДАТА ================= */
-  section{padding:clamp(3.6rem,8vh,6rem) 18px}
+  section{padding:2.8rem 16px}
   .wrap{max-width:680px;margin:0 auto;text-align:center}
-  .date-row{display:flex;align-items:center;justify-content:center;gap:clamp(6px,2.6vw,18px);margin:2.2rem auto 1.2rem}
-  .dheart{position:relative;display:grid;place-items:center}
-  .dheart i{position:absolute;font:700 1.15rem var(--script);font-style:normal}
-  .dheart.small{color:var(--red);transform:rotate(-8deg)}
-  .dheart.small.d2{transform:rotate(7deg) translateY(14px)}
-  .dheart.small i{color:var(--red)}
-  .dheart.big{color:var(--red);transform:translateY(-4px)}
-  .dheart.big i{color:#fff;font-size:2.5rem}
-  .dheart.big svg{filter:drop-shadow(0 10px 18px rgba(140,45,55,.35))}
-  .date-month{font:700 clamp(1.7rem,6vw,2.3rem) var(--script);color:var(--ink)}
 
-  /* ================= ТАЙМИНГ ДНЯ ================= */
-  #event{overflow:visible;padding-bottom:4rem}
+  .date-row{display:flex;align-items:center;justify-content:center;gap:6px;margin:1.6rem auto 1rem}
+  .dheart{position:relative;display:grid;place-items:center}
+  .dheart i{position:absolute;font-style:normal}
+  .dheart.small{color:var(--red);transform:rotate(-8deg)}
+  .dheart.small.d2{transform:rotate(7deg) translateY(12px)}
+  .dheart.small i{color:var(--red);font-size:1rem}
+  .dheart.big{color:var(--red);transform:translateY(-3px)}
+  .dheart.big i{color:#fff;font-size:1.8rem}
+  .dheart.big svg{filter:drop-shadow(0 8px 14px rgba(140,45,55,.35))}
+
+  /* тайминг — машинка + дорога */
+  #event{overflow:visible;padding-bottom:3rem}
   .road-line{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
   #roadPath{fill:none;stroke:var(--card);stroke-width:2;stroke-linecap:round;opacity:.95}
-  .bike{position:absolute;left:0;top:0;width:130px;z-index:2;pointer-events:none;will-change:transform;color:var(--red-deep)}
+  .bike{position:absolute;left:0;top:0;width:100px;z-index:2;pointer-events:none;will-change:transform;color:var(--red-deep)}
   .bike svg{width:100%;height:auto;display:block}
-  .bike .wheel,.bike .wheel2{transform-origin:center;transform-box:fill-box;animation:spin 2.4s linear infinite}
+  .bike .wheel{transform-origin:center;transform-box:fill-box;animation:spin 2.4s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .timeline{max-width:640px;margin:2.4rem auto 0;position:relative;z-index:1}
-  .tl-item{width:66%;margin:0 0 3rem;text-align:center}
-  .tl-item:nth-child(odd){margin-left:34%}
-  .tl-item:nth-child(even){margin-right:34%}
-  .tl-time{font:700 clamp(1.8rem,6.5vw,2.4rem) var(--script);color:var(--ink)}
-  .tl-title{font:700 clamp(1.4rem,5vw,1.8rem) var(--script);color:var(--ink);margin:.1rem 0}
-  .tl-note{font:700 clamp(1rem,3.8vw,1.15rem)/1.5 var(--script);color:var(--muted)}
+  .timeline{max-width:640px;margin:1.8rem auto 0;position:relative;z-index:1}
+  .tl-item{width:76%;margin:0 0 2.2rem;text-align:center}
+  .tl-item:nth-child(odd){margin-left:24%}
+  .tl-item:nth-child(even){margin-right:24%}
+  .tl-time{font-size:clamp(1.4rem,5.5vw,1.7rem);color:var(--ink)}
+  .tl-title{font-size:clamp(1.1rem,4.5vw,1.3rem);margin:.1rem 0}
+  .tl-note{font-size:clamp(.9rem,3.8vw,1rem);color:var(--muted);font-style:italic}
 
-  /* ================= БЕЛАЯ ПАНЕЛЬ ================= */
-  .panel{background:var(--card);border-radius:44px 44px 0 0;padding:clamp(3rem,7vh,4.5rem) 18px 3rem;margin-top:-14px}
+  /* белая панель */
+  .panel{background:var(--card);border-radius:28px 28px 0 0;padding:2.4rem 16px 2.4rem;margin-top:-10px}
   .panel .wrap{max-width:640px}
-  .venue-name{font:700 clamp(1.8rem,6.5vw,2.5rem)/1.3 var(--script);color:var(--ink);margin-top:1.4rem}
-  .venue-addr{font:700 clamp(1.1rem,4.2vw,1.35rem) var(--script);color:var(--muted);margin-top:.3rem}
-  .venue-time{font:700 1.3rem var(--script);color:var(--red)}
-  .venue-block + .venue-block{margin-top:2.6rem;padding-top:2.2rem;border-top:1px dashed var(--line)}
-  .pill{display:inline-block;margin-top:1.2rem;background:var(--rose-deep);color:#fff;border:0;border-radius:999px;
-    padding:.8rem 1.9rem;font:700 1rem var(--script);letter-spacing:.03em;cursor:pointer;text-decoration:none;
-    transition:transform .25s,box-shadow .25s,background .25s}
+  .venue-name{font-size:clamp(1.3rem,5vw,1.6rem);color:var(--ink);margin-top:1.2rem}
+  .venue-addr{font-size:clamp(1rem,4vw,1.1rem);color:var(--muted);margin-top:.2rem}
+  .venue-time{font-size:1.05rem;color:var(--red)}
+  .venue-block + .venue-block{margin-top:2.2rem;padding-top:1.8rem;border-top:1px dashed var(--line)}
+  .pill{display:inline-block;margin-top:1rem;background:var(--rose-deep);color:#fff;border:0;border-radius:999px;
+    padding:.75rem 1.6rem;font:400 .95rem var(--body);letter-spacing:.02em;cursor:pointer;text-decoration:none;
+    transition:transform .25s,box-shadow .25s,background .25s;min-height:44px}
   .pill:hover{background:var(--red-deep);transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(140,45,55,.5)}
 
-  /* анкета */
-  .rsvp{margin-top:3.4rem;padding-top:2.6rem;border-top:1px dashed var(--line);text-align:left}
-  .rsvp .h-heart{margin-bottom:1.6rem}
-  .field{margin-bottom:1.5rem}
-  .fl{display:block;font:700 1.25rem var(--script);color:var(--ink);margin-bottom:.5rem}
-  .fl-note{font:400 .85rem/1.6 var(--body);color:var(--muted);margin-bottom:.6rem}
+  .rsvp{margin-top:2.6rem;padding-top:2rem;border-top:1px dashed var(--line);text-align:left}
+  .rsvp .h-heart{margin-bottom:1.4rem}
+  .field{margin-bottom:1.4rem}
+  .fl{display:block;font-size:1rem;color:var(--ink);margin-bottom:.4rem}
+  .fl-note{font-size:.8rem;line-height:1.6;color:var(--muted);margin-bottom:.5rem}
   input.txt,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);
-    padding:.5rem 2px;font:400 1.05rem var(--body);color:var(--ink);transition:border-color .3s,box-shadow .3s}
+    padding:.5rem 2px;font:400 16px var(--body);color:var(--ink);transition:border-color .3s,box-shadow .3s}
   input.txt:focus,textarea:focus{outline:none;border-color:var(--rose-deep);box-shadow:0 1px 0 var(--rose-deep)}
   textarea{resize:vertical;min-height:56px}
   ::placeholder{color:#C9AFAC;font-style:italic}
-  .att{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .opt{display:block;border:1px solid var(--line);border-radius:14px;padding:.8rem .6rem;text-align:center;cursor:pointer;
-    background:#fff;transition:.25s;position:relative}
+  .att{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .opt{display:block;border:1px solid var(--line);border-radius:14px;padding:.7rem .5rem;text-align:center;cursor:pointer;
+    background:#fff;transition:.25s;position:relative;min-height:44px;display:grid;place-items:center}
   .opt input{position:absolute;opacity:0;pointer-events:none}
-  .opt .big{display:block;font:700 1.25rem var(--script);color:var(--ink)}
+  .opt .big{display:block;font-size:1.05rem;color:var(--ink)}
   .opt:hover{border-color:var(--rose-deep)}
   .opt:has(input:checked){border-color:var(--red);background:#FBEDED}
   .opt:has(input:checked) .big{color:var(--red)}
-  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
   .chip{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line);border-radius:999px;
-    padding:.45rem 1.05rem;cursor:pointer;font:400 .95rem var(--body);background:#fff;user-select:none;position:relative;transition:.25s}
+    padding:.4rem 1rem;cursor:pointer;font:400 .88rem var(--body);background:#fff;user-select:none;position:relative;
+    transition:.25s;min-height:38px}
   .chip input{position:absolute;opacity:0}
-  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.25s}
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--line);transition:.25s}
   .chip:hover{border-color:var(--rose-deep)}
   .chip:has(input:checked){border-color:var(--red);background:#FBEDED;color:var(--red-deep)}
   .chip:has(input:checked) .dot{background:var(--red)}
   #optionalGroups{max-height:800px;overflow:hidden;transition:max-height .5s ease,opacity .4s ease,transform .4s ease}
   #optionalGroups.off{max-height:0;opacity:0;transform:translateY(-8px)}
-  .err{color:var(--red);font:400 .9rem var(--body);margin:.2rem 0 1rem}
-  .send{display:block;margin:1.6rem auto 0}
+  .err{color:var(--red);font:400 .88rem var(--body);margin:.2rem 0 1rem}
+  .send{display:block;margin:1.4rem auto 0}
   .send.busy{opacity:.7;pointer-events:none}
-  .fineprint{text-align:center;color:var(--muted);font:400 .82rem var(--body);margin-top:1rem}
-  .done{display:none;text-align:center;padding:1.4rem 0}
+  .fineprint{text-align:center;color:var(--muted);font:400 .78rem var(--body);margin-top:1rem}
+  .done{display:none;text-align:center;padding:1.2rem 0}
   .done.show{display:block;animation:rise .7s ease}
   @keyframes rise{from{opacity:0;transform:translateY(18px)}}
-  .done .big-script{font:700 2.2rem var(--script);color:var(--red)}
-  .linklike{background:none;border:0;color:var(--rose-deep);text-decoration:underline dotted;cursor:pointer;font:400 .9rem var(--body);margin-top:1.2rem}
+  .linklike{background:none;border:0;color:var(--rose-deep);text-decoration:underline dotted;cursor:pointer;
+    font:400 .88rem var(--body);margin-top:1rem}
   .hp-wrap{position:absolute;left:-9999px}
 
-  /* дресс-код */
-  .dress{margin-top:3.4rem;padding-top:2.6rem;border-top:1px dashed var(--line)}
-  .dress-text{font:700 clamp(1.1rem,4.2vw,1.3rem)/1.6 var(--script);color:var(--muted);max-width:46ch;margin:1.2rem auto 0}
-  .swatches{margin-top:1.6rem;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
-  .sw{width:46px;height:46px;border-radius:50%;background:var(--c);
+  .dress, .gifts, .count{margin-top:2.4rem;padding-top:2rem;border-top:1px dashed var(--line)}
+  .dress-text, .gifts-text{font-size:clamp(1rem,4.2vw,1.15rem)/1.65;color:var(--ink);max-width:50ch;margin:1rem auto 0}
+  .gifts-text + .gifts-text{margin-top:.7rem}
+  .dress-text{color:var(--muted)}
+  .swatches{margin-top:1.4rem;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+  .sw{width:40px;height:40px;border-radius:50%;background:var(--c);
     box-shadow:inset 0 0 0 1px rgba(90,60,60,.08),0 6px 14px -8px rgba(120,60,70,.4);
     transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1);transition-delay:var(--sd,0s)}
   .in .sw{transform:scale(1)}
-  .sw-note{margin-top:1rem;font:400 .78rem var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .sw-note{margin-top:.9rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
-  /* подарки */
-  .gifts{margin-top:3.4rem;padding-top:2.6rem;border-top:1px dashed var(--line)}
-  .gifts-text{font:700 clamp(1.1rem,4.2vw,1.3rem)/1.6 var(--script);color:var(--ink);max-width:50ch;margin:1.2rem auto 0}
-  .gifts-text + .gifts-text{margin-top:.9rem}
-
-  /* таймер */
-  .count{margin-top:3.4rem;padding-top:2.6rem;border-top:1px dashed var(--line)}
-  .timer{display:flex;justify-content:center;align-items:flex-start;gap:clamp(.5rem,3vw,1.4rem);margin-top:1.6rem;flex-wrap:wrap}
-  .cd{min-width:70px;text-align:center}
-  .cd b{display:block;font:700 clamp(2.4rem,9vw,3.6rem)/1 var(--script);color:var(--ink);font-variant-numeric:tabular-nums}
-  .cd span{display:block;margin-top:.4rem;font:400 .72rem var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .timer{display:flex;justify-content:center;align-items:flex-start;gap:clamp(.5rem,3vw,1.2rem);margin-top:1.4rem;flex-wrap:wrap}
+  .cd{min-width:60px;text-align:center}
+  .cd b{display:block;font-size:clamp(1.9rem,8vw,2.8rem)/1;color:var(--ink);font-variant-numeric:tabular-nums}
+  .cd span{display:block;margin-top:.3rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
   .tick{animation:pop .45s ease}
   @keyframes pop{0%{opacity:.15;transform:translateY(8px)}100%{opacity:1;transform:none}}
 
-  footer{padding:3rem 18px 3.4rem;text-align:center;background:var(--card)}
-  .foot-names{font:700 2rem var(--script);color:var(--ink)}
-  .foot-date{font:400 .78rem var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
+  footer{padding:2.4rem 16px 2.8rem;text-align:center;background:var(--card)}
+  .foot-names{font-size:1.3rem;color:var(--ink)}
+  .foot-date{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
 
-  @media (max-width:600px){
-    .bike{width:104px}
-    .tl-item{width:74%}
-    .tl-item:nth-child(odd){margin-left:26%}
-    .tl-item:nth-child(even){margin-right:26%}
-    .cover-card{padding:2rem 1.1rem}
-    .panel{border-radius:30px 30px 0 0}
+  /* ================= ПЛАНШЕТ (≥600px) ================= */
+  @media (min-width:600px){
+    .cover{padding:3rem 24px 0}
+    .cover-card{padding:2.4rem 2rem}
+    section{padding:4rem 24px}
+    .panel{border-radius:44px 44px 0 0;padding:3.5rem 24px}
+    .date-row{gap:14px;margin:2rem auto 1.2rem}
+    .dheart.small i{font-size:1.15rem}
+    .dheart.big i{font-size:2.3rem}
+    .bike{width:130px}
+    .tl-item{width:66%;margin-bottom:2.8rem}
+    .tl-item:nth-child(odd){margin-left:34%}
+    .tl-item:nth-child(even){margin-right:34%}
+    .sw{width:46px;height:46px}
+    .swatches{gap:14px}
+    .cd{min-width:72px}
+    .cd b{font-size:3.2rem}
+    .foot-names{font-size:1.5rem}
   }
-  @media (max-width:480px){
+
+  /* ================= ДЕСКТОП (≥900px) ================= */
+  @media (min-width:900px){
+    .cover{padding:4rem 24px 0}
+    section{padding:5rem 24px}
+    .dheart.big i{font-size:2.5rem}
+    .bike{width:150px}
+    .cd b{font-size:3.6rem}
+  }
+
+  @media (max-width:400px){
     .att{grid-template-columns:1fr}
+    .bike{width:90px}
   }
+
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -197,12 +228,11 @@
     <svg class="cover-frame" viewBox="0 0 420 300" preserveAspectRatio="none" aria-hidden="true"><path id="coverFrame" pathLength="1" d=""/></svg>
     <div class="cover-text">
       <p>Мы женимся!</p>
-      <!-- ▶ ТЕКСТ ПРИГЛАШЕНИЯ: замените эти абзацы на свой текст.
-           Один абзац = одна строка <p>…</p> -->
+      <!-- ▶ ТЕКСТ ПРИГЛАШЕНИЯ -->
       <p>Мы рады пригласить вас на нашу свадьбу.</p>
       <p>Очень будем рады разделить этот день с вами.</p>
       <p>В пригласительном вы можете ознакомиться с деталями торжества и не забудьте заполнить анкету.</p>
-      <!-- ◀ конец текста приглашения -->
+      <!-- ◀ конец текста -->
       <p class="cover-sign">С любовью, молодожёны ♡</p>
     </div>
   </div>
@@ -215,11 +245,11 @@
   <div class="wrap">
     <h2 class="h-heart" data-reveal><span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span>Важная дата<span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span></h2>
     <div class="date-row" data-reveal>
-      <span class="dheart small"><svg width="50" height="45" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>4</i></span>
-      <span class="dheart small d2"><svg width="50" height="45" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>5</i></span>
-      <span class="dheart big"><svg width="116" height="104" viewBox="0 0 20 18"><path fill="currentColor" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>6</i></span>
-      <span class="dheart small d2"><svg width="50" height="45" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>7</i></span>
-      <span class="dheart small"><svg width="50" height="45" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>8</i></span>
+      <span class="dheart small"><svg width="44" height="40" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>4</i></span>
+      <span class="dheart small d2"><svg width="44" height="40" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>5</i></span>
+      <span class="dheart big"><svg width="90" height="81" viewBox="0 0 20 18"><path fill="currentColor" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>6</i></span>
+      <span class="dheart small d2"><svg width="44" height="40" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>7</i></span>
+      <span class="dheart small"><svg width="44" height="40" viewBox="0 0 20 18"><path fill="none" stroke="currentColor" stroke-width="1" d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg><i>8</i></span>
     </div>
     <p class="date-month" data-reveal>августа · пятница</p>
   </div>
@@ -229,22 +259,73 @@
 <section id="event" class="deco" data-hearts>
   <svg class="road-line" id="roadLine" aria-hidden="true"><path id="roadPath" d=""/></svg>
   <div class="bike" id="bike" aria-hidden="true">
-    <svg viewBox="0 0 320 150">
-      <ellipse cx="265" cy="95" rx="42" ry="30" fill="none" stroke="currentColor" stroke-width="2"/>
-      <path d="M 230 75 Q 265 60 300 75" fill="none" stroke="currentColor" stroke-width="2"/>
-      <path d="M 225 95 L 240 85" stroke="currentColor" stroke-width="2"/>
-      <path d="M 90 115 L 120 95 L 170 95 L 195 115" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M 120 95 L 140 70 L 160 70" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <path d="M 140 70 Q 150 62 160 70" fill="currentColor" opacity=".8"/>
-      <path d="M 195 75 L 195 55" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M 185 55 L 205 55" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="205" cy="90" r="5" fill="currentColor"/>
-      <ellipse cx="145" cy="82" rx="14" ry="6" fill="currentColor" opacity=".3"/>
-      <g class="wheel2"><circle cx="200" cy="125" r="18" fill="none" stroke="currentColor" stroke-width="2.5"/><line x1="200" y1="107" x2="200" y2="143" stroke="currentColor" stroke-width="1"/><line x1="182" y1="125" x2="218" y2="125" stroke="currentColor" stroke-width="1"/><line x1="187" y1="112" x2="213" y2="138" stroke="currentColor" stroke-width="1"/><line x1="187" y1="138" x2="213" y2="112" stroke="currentColor" stroke-width="1"/></g>
-      <g class="wheel"><circle cx="95" cy="125" r="18" fill="none" stroke="currentColor" stroke-width="2.5"/><line x1="95" y1="107" x2="95" y2="143" stroke="currentColor" stroke-width="1"/><line x1="77" y1="125" x2="113" y2="125" stroke="currentColor" stroke-width="1"/><line x1="82" y1="112" x2="108" y2="138" stroke="currentColor" stroke-width="1"/><line x1="82" y1="138" x2="108" y2="112" stroke="currentColor" stroke-width="1"/></g>
-      <g class="wheel"><circle cx="270" cy="125" r="14" fill="none" stroke="currentColor" stroke-width="2"/><line x1="270" y1="111" x2="270" y2="139" stroke="currentColor" stroke-width="1"/><line x1="256" y1="125" x2="284" y2="125" stroke="currentColor" stroke-width="1"/></g>
-      <g><circle cx="178" cy="48" r="8" fill="currentColor"/><path d="M 172 56 L 170 78 L 186 78 L 184 56 Z" fill="currentColor" opacity=".9"/><path d="M 178 58 L 176 70 L 180 70 Z" fill="#fff"/><path d="M 183 62 L 195 55" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M 172 62 L 162 66" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
-      <g><circle cx="265" cy="55" r="9" fill="currentColor"/><path d="M 258 48 Q 250 50 248 62 Q 258 58 265 55 Z" fill="currentColor" opacity=".5"/><path d="M 272 48 Q 280 50 282 62 Q 272 58 265 55 Z" fill="currentColor" opacity=".5"/><circle cx="278" cy="45" r="3" fill="currentColor" opacity=".7"/><circle cx="275" cy="42" r="2.5" fill="currentColor" opacity=".7"/><circle cx="281" cy="42" r="2.5" fill="currentColor" opacity=".7"/><path d="M 255 65 Q 265 62 275 65 L 278 95 Q 265 98 252 95 Z" fill="currentColor" opacity=".8"/><path d="M 258 68 Q 248 72 245 80" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+    <svg viewBox="0 0 380 150">
+      <!-- заднее колесо -->
+      <g class="wheel">
+        <circle cx="70" cy="118" r="15" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <circle cx="70" cy="118" r="2" fill="currentColor"/>
+        <line x1="70" y1="103" x2="70" y2="133" stroke="currentColor" stroke-width=".8"/>
+        <line x1="55" y1="118" x2="85" y2="118" stroke="currentColor" stroke-width=".8"/>
+        <line x1="59" y1="107" x2="81" y2="129" stroke="currentColor" stroke-width=".8"/>
+        <line x1="59" y1="129" x2="81" y2="107" stroke="currentColor" stroke-width=".8"/>
+      </g>
+      <!-- переднее колесо -->
+      <g class="wheel">
+        <circle cx="305" cy="118" r="15" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <circle cx="305" cy="118" r="2" fill="currentColor"/>
+        <line x1="305" y1="103" x2="305" y2="133" stroke="currentColor" stroke-width=".8"/>
+        <line x1="290" y1="118" x2="320" y2="118" stroke="currentColor" stroke-width=".8"/>
+        <line x1="294" y1="107" x2="316" y2="129" stroke="currentColor" stroke-width=".8"/>
+        <line x1="294" y1="129" x2="316" y2="107" stroke="currentColor" stroke-width=".8"/>
+      </g>
+      <!-- кузов ретро-кабриолет -->
+      <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"
+        d="M 30 100
+           Q 30 88, 55 88
+           L 110 88
+           L 130 62
+           L 205 62
+           L 225 88
+           L 310 88
+           Q 345 88, 350 100
+           L 350 108
+           Q 340 115, 320 115
+           L 55 115
+           Q 35 115, 30 108 Z"/>
+      <!-- разделитель дверей -->
+      <line x1="205" y1="62" x2="205" y2="108" stroke="currentColor" stroke-width="1.3"/>
+      <!-- лобовое стекло -->
+      <path fill="none" stroke="currentColor" stroke-width="2" d="M 225 88 L 212 58 L 245 55 L 240 88"/>
+      <!-- фары -->
+      <circle cx="343" cy="95" r="3.5" fill="currentColor"/>
+      <!-- дверные ручки -->
+      <line x1="145" y1="96" x2="158" y2="96" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="232" y1="96" x2="245" y2="96" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <!-- нижняя линия -->
+      <path fill="none" stroke="currentColor" stroke-width="1" d="M 55 105 L 320 105" opacity=".4"/>
+
+      <!-- НЕВЕСТА слева (пассажир) -->
+      <g>
+        <circle cx="160" cy="44" r="8" fill="currentColor"/>
+        <path d="M 152 38 Q 144 42 142 54 Q 152 50 160 44 Z" fill="currentColor" opacity=".5"/>
+        <path d="M 168 38 Q 176 42 178 54 Q 168 50 160 44 Z" fill="currentColor" opacity=".5"/>
+        <path d="M 151 54 Q 160 51 169 54 L 170 84 Q 160 86 150 84 Z" fill="currentColor" opacity=".85"/>
+        <circle cx="170" cy="78" r="3" fill="currentColor" opacity=".7"/>
+        <circle cx="174" cy="74" r="2.5" fill="currentColor" opacity=".7"/>
+        <circle cx="166" cy="74" r="2.5" fill="currentColor" opacity=".7"/>
+        <path d="M 152 60 Q 164 68 170 76" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </g>
+
+      <!-- ЖЕНИХ справа (за рулём) -->
+      <g>
+        <circle cx="240" cy="42" r="8" fill="currentColor"/>
+        <path d="M 230 50 L 228 84 L 252 84 L 250 50 Z" fill="currentColor" opacity=".85"/>
+        <path d="M 240 52 L 237 72 L 243 72 Z" fill="#fff"/>
+        <circle cx="240" cy="78" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M 240 78 L 240 72" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M 234 78 L 246 78" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M 230 58 Q 240 68 244 76" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </g>
     </svg>
   </div>
   <div class="wrap">
@@ -257,13 +338,11 @@
 <div class="panel">
   <div class="wrap">
 
-    <!-- МЕСТО ТОРЖЕСТВА -->
     <section id="where" style="padding-top:0">
       <h2 class="h-heart" data-reveal><span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span>Место торжества<span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span></h2>
       <div id="venues"></div>
     </section>
 
-    <!-- АНКЕТА -->
     <form class="rsvp" id="rsvpForm" novalidate>
       <h2 class="h-heart"><span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span>Анкета гостя<span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span></h2>
       <div id="formBody">
@@ -304,7 +383,6 @@
       </div>
     </form>
 
-    <!-- ДРЕСС-КОД -->
     <section class="dress">
       <h2 class="h-heart" data-reveal><span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span>Дресс-код<span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span></h2>
       <p class="dress-text" data-reveal id="dressText"></p>
@@ -312,14 +390,12 @@
       <p class="sw-note" id="swNote"></p>
     </section>
 
-    <!-- ПОДАРКИ -->
     <section class="gifts">
       <h2 class="h-heart" data-reveal><span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span>Цветы и подарки<span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span></h2>
       <p class="gifts-text" data-reveal id="txtGifts"></p>
       <p class="gifts-text" data-reveal id="txtFlowers"></p>
     </section>
 
-    <!-- ТАЙМЕР -->
     <section class="count">
       <h2 class="h-heart" data-reveal><span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span>До свадьбы осталось<span class="hh"><svg viewBox="0 0 20 18"><path d="M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z"/></svg></span></h2>
       <div class="timer" data-reveal>
@@ -340,10 +416,9 @@
 </footer>
 
 <script>
-/* ================= НАСТРОЙКИ — МЕНЯТЬ ЗДЕСЬ ================= */
+/* ================= НАСТРОЙКИ ================= */
 const CONFIG = {
   dateISO: '2027-08-06T14:40:00',
-
   timeline: [
     { time:'14:40', title:'Церемония росписи', note:'Вы станете свидетелями трогательного момента — приготовьте платочки' },
     { time:'16:00', title:'Праздник в геокуполе', note:'Будет много танцев, веселья, поздравлений и любви' },
@@ -369,17 +444,15 @@ const CONFIG = {
   },
   gifts: 'Ваши улыбки и смех подарят нам незабываемое счастье в этот день, а пожелания в конвертах помогут осуществить наши мечты!',
   flowers: 'Просим вас не дарить нам цветы — мы не успеем насладиться их красотой. Если хотите сделать комплимент, замените букет на сертификат: Золотое Яблоко, Ozon, Wildberries, Лэтуаль.',
-
   // ВАЖНО: вставьте сюда вашу ссылку .../exec от Google Таблицы!
   formUrl: '',
 };
-/* ================= конец настроек ================= */
 
 const $ = (s, r=document) => r.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* сердечки, разбросанные по фону */
+/* сердечки на фоне */
 const HEART_PATH = 'M10 17 C 4 12 1.5 8.5 1.5 5.5 C 1.5 3 3.5 1 6 1 C 7.6 1 9 1.8 10 3.2 C 11 1.8 12.4 1 14 1 C 16.5 1 18.5 3 18.5 5.5 C 18.5 8.5 16 12 10 17 Z';
 const HEART_SPOTS = [
   { t:'4%',  l:'10%', s:20, r:-14 }, { t:'8%',  rt:'12%', s:24, r:10 },
@@ -395,7 +468,7 @@ document.querySelectorAll('[data-hearts]').forEach(sec => {
   });
 });
 
-/* волнистая рамка обложки */
+/* волнистая рамка */
 (function(){
   const w=420,h=300,a=4,st=14;let d=`M ${a} ${a}`;let s=1;
   for(let x=a;x<w-a-st;x+=st){d+=` q ${st/2} ${a*s} ${st} 0`;s*=-1;}
@@ -440,7 +513,6 @@ $('#swNote').textContent = CONFIG.dress.colors.map(c=>c.name).join(' · ');
 $('#txtGifts').textContent = CONFIG.gifts;
 $('#txtFlowers').textContent = CONFIG.flowers;
 
-/* чипы анкеты */
 function buildChips(list, container){
   list.forEach((v,i)=>{
     const id = container.id+'-'+i;
@@ -451,17 +523,17 @@ function buildChips(list, container){
 buildChips(CONFIG.foods,  $('#foods'));
 buildChips(CONFIG.drinks, $('#drinks'));
 
-/* появление при прокрутке */
+/* появление */
 const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.15});
 document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 
-/* ===== волнистая дорога + мопед по скроллу ===== */
+/* волнистая дорога + машинка */
 const evSection=$('#event'), roadLine=$('#roadLine'), roadPath=$('#roadPath'), bike=$('#bike');
 let roadLen=0;
 function buildRoad(){
   const h=evSection.offsetHeight, w=evSection.offsetWidth;
   roadLine.setAttribute('viewBox',`0 0 ${w} ${h}`);
-  const cx=w/2, amp=Math.min(w*.30,190), waves=3, seg=h/(waves*2);
+  const cx=w/2, amp=Math.min(w*.30,180), waves=3, seg=h/(waves*2);
   let d=`M ${cx} 0`;
   for(let i=0;i<waves*2;i++){ const dir=i%2===0?1:-1; d+=` Q ${cx+amp*dir} ${seg*i+seg/2}, ${cx} ${seg*(i+1)}`; }
   roadPath.setAttribute('d',d);
@@ -508,9 +580,7 @@ document.querySelectorAll('input[name=attend]').forEach(r=>r.addEventListener('c
 }));
 function showErr(msg){const e=$('#formError');e.textContent=msg;e.hidden=false;}
 function done(real){
-  $('#formBody').hidden=true;
-  $('#doneView').classList.add('show');
-  $('#demoNote').hidden=real;
+  $('#formBody').hidden=true;$('#doneView').classList.add('show');$('#demoNote').hidden=real;
 }
 $('#rsvpForm').addEventListener('submit', async e=>{
   e.preventDefault();
@@ -543,10 +613,8 @@ $('#rsvpForm').addEventListener('submit', async e=>{
   }
 });
 $('#againBtn').addEventListener('click',()=>{
-  $('#rsvpForm').reset();
-  $('#optionalGroups').classList.remove('off');
-  $('#doneView').classList.remove('show');
-  $('#formBody').hidden=false;
+  $('#rsvpForm').reset();$('#optionalGroups').classList.remove('off');
+  $('#doneView').classList.remove('show');$('#formBody').hidden=false;
   const btn=$('#submitBtn');btn.disabled=false;btn.classList.remove('busy');btn.textContent='Отправить';
 });
 </script>
